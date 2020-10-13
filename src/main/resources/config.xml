@@ -1,0 +1,20 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <beans profile="prod">
+        <context:property-placeholder location="classpath:application.properties" />
+    </beans>
+    <beans profile="dev">
+        <context:property-placeholder location="classpath:application-dev.properties" />
+    </beans>
+
+    <beans profile="prod,dev">
+        <bean class="sk.stuba.fei.uim.asos.cvicenie2.properties.MongoRepository" name="mongoRepository">
+            <property name="host" value="${mongo.host}"/>
+            <property name="port" value="${mongo.port}"/>
+            <property name="database" value="${mongo.database}"/>
+            <property name="login" value="${mongo.login}"/>
+            <property name="password" value="${mongo.password}"/>
+        </bean>
+    </beans>
+</beans>
